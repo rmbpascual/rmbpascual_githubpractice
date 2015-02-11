@@ -1,0 +1,14 @@
+$ git config --global user.name "rmbpascual" 
+$ git config --global user.email pasacualrizamae@gmail.com
+
+$ git config --global core.editor gedit
+
+$ git config --list 
+  user.name=rmbpascual 
+  user.email=pascualrizamae@gmail.com 
+  core.editor=gedit merge.tool=vimdiff 
+  core.repositoryformatversion=0 
+  core.bare=false 
+  core.logallrefupdates=true
+  
+$ git config user.name rmbpascual
