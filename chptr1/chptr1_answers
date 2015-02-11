@@ -12,3 +12,5 @@ $ git config --list
   core.logallrefupdates=true
   
 $ git config user.name rmbpascual
+
+$ git help config
