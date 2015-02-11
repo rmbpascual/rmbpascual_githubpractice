@@ -1,0 +1,226 @@
+2.1 Git Basics - Getting a Git Repository
+  This chapter covers every basic command you need to do the vast majority of the things you’ll eventually 
+  spend your time doing with Git. By the end of the chapter, you should be able to configure and initialize
+  a repository, begin and stop tracking files, and stage and commit changes.
+  
+Getting a Git Repository 
+  You can get a Git project using two main approaches. The first takes an existing project or directory and 
+  imports it into Git. The second clones an existing Git repository from another server.
+  
+Initializing a Repository in an Existing Directory
+  $ git init
+  
+  If you want to start version-controlling existing files (as opposed to an empty directory), you should 
+  probably begin tracking those files and do an initial commit. You can accomplish that with a few git 
+  add commands that specify the files you want to track, followed by a git commit:
+  $ git add *.c
+  $ git add LICENSE
+  $ git commit -m 'initial project version'
+  
+Cloning an Existing Repository
+  $ git clone https://github.com/rmbpascual/rmbpascual_githubpractice
+  
+2.2 Git Basics - Recording Changes to the Repository
+
+Recording Changes to the Repository
+  You have a bona fide Git repository and a checkout or working copy of the files 
+  for that project. You need to make some changes and commit snapshots of those 
+  changes into your repository each time the project reaches a state you want to 
+  record.
+  
+  As you edit files, Git sees them as modified, because you’ve changed them since 
+  your last commit. You stage these modified files and then commit all your staged 
+  changes, and the cycle repeats.
+  
+Checking the Status of Your Files
+  $ git status
+  On branch master
+  nothing to commit, working directory clean
+  
+  Let’s say you add a new file to your project, a simple README file. If the file 
+  didn’t exist before, and you run git status, you see your untracked file like so:
+  $ echo 'My Project' > README
+  $ git status
+  On branch master
+  Untracked files:
+    (use "git add <file>..." to include in what will be committed)
+
+      README
+
+  nothing added to commit but untracked files present (use "git add" to track)
+
+Tracking New Files
+  $ git add README
+  
+  If you run your status command again, you can see that your README file is now 
+  tracked and staged to be committed:
+  $ git status
+  On branch master
+  Changes to be committed:
+    (use "git reset HEAD <file>..." to unstage)
+
+      new file:   README
+      
+Staging Modified Files
+  $ git status
+  On branch master
+  Changes to be committed:
+    (use "git reset HEAD <file>..." to unstage)
+
+      new file:   README
+
+  Changes not staged for commit:
+    (use "git add <file>..." to update what will be committed)
+    (use "git checkout -- <file>..." to discard changes in working directory)
+
+      modified:   CONTRIBUTING.md
+      
+  $ git add CONTRIBUTING.md
+  $ git status
+  On branch master
+  Changes to be committed:
+    (use "git reset HEAD <file>..." to unstage)
+
+      new file:   README
+      modified:   CONTRIBUTING.md
+      
+Short Status
+  $ git status -s
+
+Ignoring Files
+  $ cat .gitignore
+
+Viewing Your Staged and Unstaged Changes
+  $ git status
+
+  To see what you’ve changed but not yet staged, type git diff with no other arguments:
+  $ git diff
+
+  If you want to see what you’ve staged that will go into your next commit, you can use
+  git diff --staged. This command compares your staged changes to your last commit:
+  $ git diff --staged
+  
+Commiting Your Changes
+  $ git commit
+  
+Removing Files
+  $ rm README.md
+
+Moving Files
+  $ git mv file_from file_to
+  $ git mv README.md README
+  $ git status
+  
+  However, this is equivalent to running something like this:
+  $ mv README.md README
+  $ git rm README.md
+  $ git add README
+
+2.3 Git Basics - Viewing the Commit History
+
+Viewing the Commit History
+  $ git clone https://github.com/rmbpascual/rmbpascual_githubpractice
+  $ git log
+  
+Lists some of the more useful options that format takes.
+  Useful options for git log --pretty=format
+Option	Description of Output
+%H      Commit hash
+%h      Abbreviated commit hash
+%T      Tree hash
+%t      Abbreviated tree hash
+%P      Parent hashes
+%p      Abbreviated parent hashes
+%an     Author name
+%ae     Author e-mail
+%ad     Author date (format respects the --date=option)
+%ar     Author date, relative
+%cn     Committer name
+%ce     Committer email
+%cd     Committer date
+%cr     Committer date, relative
+%s      Subject
+
+2.4 Git Basics - Undoing Things
+
+Undoing Things
+  $ git commit --amend
+  
+  As an example, if you commit and then realize you forgot to stage the changes in a file
+  you wanted to add to this commit, you can do something like this:
+  $ git commit -m 'initial commit'
+  $ git add forgotten_file
+  $ git commit --amend
+  
+2.5 Git Basics - Working with Remotes
+
+Working with Remotes
+  To be able to collaborate on any Git project, you need to know how to manage your remote 
+  repositories. Remote repositories are versions of your project that are hosted on the 
+  Internet or network somewhere. You can have several of them, each of which generally is 
+  either read-only or read/write for you. 
+  
+Showing Your Remotes
+  $ git remote
+  
+Adding Remote Repositories
+  $ git remote
+  $ git remote add pb https://github.com/rmbpascual/rmbpascual_githubpractice
+  $ git remote -v
+
+  Now you can use the string pb on the command line in lieu of the whole URL. For example, 
+  if you want to fetch all the information that Paul has but that you don’t yet have in 
+  your repository, you can run git fetch pb:
+  $ git fetch pb
+
+Fetching and Pulling from Your Remotes
+  $ git fetch [remote-name]
+  
+Pushing to Your Remotes
+  $ git push origin master
+  
+Inspecting a Remote
+  $ git remote show origin
+
+2.6 Git Basics - Tagging
+
+Tagging
+  In this section, you’ll learn how to list the available tags, how to create new tags, 
+  and what the different types of tags are.
+  
+Listing Your Tags
+  $ git tag
+
+Checking out Tags
+  $ git checkout -b version2 v2.0.0
+  Switched to a new branch 'version2'
+  
+2.7 Git Basics - Git Aliases
+
+Git Aliases
+  Git doesn’t automatically infer your command if you type it in partially. If you don’t 
+  want to type the entire text of each of the Git commands, you can easily set up an alias 
+  for each command using git config. Here are a couple of examples you may want to set up:
+  $ git config --global alias.co checkout
+  $ git config --global alias.br branch
+  $ git config --global alias.ci commit
+  $ git config --global alias.st status
+  
+  This technique can also be very useful in creating commands that you think should exist. 
+  For example, to correct the usability problem you encountered with unstaging a file, you 
+  can add your own unstage alias to Git:
+  $ git config --global alias.unstage 'reset HEAD --'
+  
+  This makes the following two commands equivalent:
+  $ git unstage fileA
+  $ git reset HEAD fileA
+  
+  This seems a bit clearer. It’s also common to add a last command, like this:
+  $ git config --global alias.last 'log -1 HEAD'
+  
+2.8 Git Basics - Summary
+
+Summary
+  At this point, you can do all the basic local Git operations – creating or cloning a repository, 
+  making changes, staging and committing those changes, and viewing the history of all the changes 
+  the repository has been through. 
