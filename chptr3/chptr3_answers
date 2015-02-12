@@ -1,0 +1,67 @@
+$ git branch testing
+
+$ git log --oneline --decorate
+e992588 (HEAD, testing, master) initial project version
+
+$ git checkout testing
+Switched to branch 'testing'
+
+$ git checkout master
+Switched to branch 'master'
+
+$ git log --oneline --decorate --graph --all
+* e992588 (HEAD, testing, master) initial project version
+
+$ git checkout -b iss53
+Switched to a new branch "iss53"
+
+$ git checkout master
+Switched to branch 'master'
+
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+
+$ git checkout master
+Switched to branch 'master'
+$ git merge iss53
+Already up-to-date.
+
+$ git branch -d iss53
+Deleted branch iss53 (was e992588)
+
+$ git branch
+* master
+  testing
+  
+$ git branch -v
+* master e992588 initial project version
+  testing e992588 initial project version
+  
+$ git branch --merged
+* master
+  testing
+  
+$ git branch --no-merged
+
+$ git branch -d testing
+Deleted branch testing (was e992588).
+
+$ git fetch origin
+warning: no common commits
+remote: Counting objects: 40, done.
+remote: Compressing objects: 100% (31/31), done.
+remote: Total 40 (delta 4), reused 0 (delta 0)
+Unpacking objects: 100% (40/40), done.
+From https://github.com/rmbpascual/rmbpascual_githubpractice
+ * [new branch]      master     -> origin/master
+ 
+$ git branch -vv
+* master e992588 initial project version
+
+$ git checkout experiment
+$ git rebase master
+Current branch master is up to date.
+
+$ git checkout master
+$ git merge experiment
+
