@@ -1,0 +1,65 @@
+GitHub is the single largest host for Git repositories, and is the central point of collaboration 
+for millions of developers and projects. A large percentage of all Git repositories are hosted on 
+GitHub, and many open-source projects use it for Git hosting, issue tracking, code review, and other 
+things. So while it’s not a direct part of the Git open source project, there’s a good chance that 
+you’ll want or need to interact with GitHub at some point while using Git professionally.
+
+Account Setup and Configuration
+The first thing you need to do is set up a free user account. Simply visit https://github.com, 
+choose a user name that isn’t already taken, provide an email address and a password, and click 
+the big green “Sign up for GitHub” button.
+
+GitHub provides all of its functionality with free accounts, with the limitation that all of your projects
+are fully public (everyone has read access). GitHub’s paid plans include a set number of private projects, 
+but we won’t be covering those in this book.
+
+Be sure to name your SSH key something you can remember. You can name each of your keys (e.g. “My Laptop” or
+“Work Account”) so that if you need to revoke a key later, you can easily tell which one you’re looking for.
+
+Your Email Addresses
+The way that GitHub maps your Git commits to your user is by email address. If you use multiple email addresses
+in your commits and you want GitHub to link them up properly, you need to add all the email addresses you have 
+used to the Emails section of the admin section.
+
+Historically, the term “fork” has been somewhat negative in context, meaning that someone took an open source
+project in a different direction, sometimes creating a competing project and splitting the contributors. 
+In GitHub, a “fork” is simply the same project in your own namespace, allowing you to make changes to a project
+publicly as a way to contribute in a more open manner.
+
+The GitHub Flow
+GitHub is designed around a particular collaboration workflow, centered on Pull Requests. This flow works whether 
+you’re collaborating with a tightly-knit team in a single shared repository, or a globally-distributed company 
+or network of strangers contributing to a project through dozens of forks.
+
+ - Create a topic branch from master.
+
+ - Make some commits to improve the project.
+
+ - Push this branch to your GitHub project.
+
+ - Open a Pull Request on GitHub.
+
+ - Discuss, and optionally continue committing.
+
+ - The project owner merges or closes the Pull Request.
+ 
+Though Pull Requests are used commonly for public projects like this when the contributor has a complete change ready
+to be made, it’s also often used in internal projects at the beginning of the development cycle. Since you can keep
+pushing to the topic branch even after the Pull Request is opened, it’s often opened early and used as a way to iterate
+on work as a team within a context, rather than opened at the very end of the process.
+
+Not Only Forks
+It’s important to note that you can also open a Pull Request between two branches in the same repository. If you’re 
+working on a feature with someone and you both have write access to the project, you can push a topic branch to the 
+repository and open a Pull Request on it to the master branch of that same project to initiate the code review and 
+discussion process. No forking necessary.
+
+It is often preferable to share the HTTP based URL for a public project, since the user does not have to have a 
+GitHub account to access it for cloning. Users will have to have an account and an uploaded SSH key to access your
+project if you give them the SSH URL. The HTTP one is also exactly the same URL they would paste into a browser to
+view the project there.
+
+Summary
+Now you’re a GitHub user. You know how to create an account, manage an organization, create and push to repositories,
+contribute to other people’s projects and accept contributions from others. In the next chapter, you’ll learn more 
+powerful tools and tips for dealing with complex situations, which will truly make you a Git master.
