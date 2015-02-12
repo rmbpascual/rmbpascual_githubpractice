@@ -1,0 +1,82 @@
+5 Distributed Git - Distributed Workflows
+
+Distributed Workflows
+Unlike Centralized Version Control Systems (CVCSs), the distributed nature of Git allows you 
+to be far more flexible in how developers collaborate on projects. In centralized systems, 
+every developer is a node working more or less equally on a central hub. In Git, however, every 
+developer is potentially both a node and a hub – that is, every developer can both contribute 
+code to other repositories and maintain a public repository on which others can base their work 
+and which they can contribute to. This opens a vast range of workflow possibilities for your
+project and/or your team, so we’ll cover a few common paradigms that take advantage of this flexibility. 
+
+Centralized Workflow
+In centralized systems, there is generally a single collaboration model–the centralized workflow. One 
+central hub, or repository, can accept code, and everyone synchronizes their work to it. A number of
+developers are nodes – consumers of that hub – and synchronize to that one place.
+
+This means that if two developers clone from the hub and both make changes, the first developer to 
+push their changes back up can do so with no problems. The second developer must merge in the first 
+one’s work before pushing changes up, so as not to overwrite the first developer’s changes. This concept 
+is as true in Git as it is in Subversion (or any CVCS), and this model works perfectly well in Git.
+
+Integration-Manager Workflow
+Because Git allows you to have multiple remote repositories, it’s possible to have a workflow where each 
+developer has write access to their own public repository and read access to everyone else’s. This scenario
+often includes a canonical repository that represents the “official” project. To contribute to that project,
+you create your own public clone of the project and push your changes to it. Then, you can send a request to 
+the maintainer of the main project to pull in your changes. The maintainer can then add your repository as a 
+remote, test your changes locally, merge them into their branch, and push back to their repository. 
+
+ - The project maintainer pushes to their public repository.
+
+ - A contributor clones that repository and makes changes.
+
+ - The contributor pushes to their own public copy.
+
+ - The contributor sends the maintainer an e-mail asking them to pull changes.
+
+ - The maintainer adds the contributor’s repo as a remote and merges locally.
+
+ - The maintainer pushes merged changes to the main repository
+ 
+ Dictator and Lieutenants Workflow
+This is a variant of a multiple-repository workflow. It’s generally used by huge projects with hundreds of 
+collaborators; one famous example is the Linux kernel. Various integration managers are in charge of certain 
+parts of the repository; they’re called lieutenants. All the lieutenants have one integration manager known
+as the benevolent dictator. The benevolent dictator’s repository serves as the reference repository from which
+all the collaborators need to pull. 
+
+ - Regular developers work on their topic branch and rebase their work on top of master. The master branch is 
+ that of the dictator.
+
+ - Lieutenants merge the developers’ topic branches into their master branch.
+
+ - The dictator merges the lieutenants’ master branches into the dictator’s master branch.
+
+ - The dictator pushes their master to the reference repository so the other developers can rebase on it.
+
+Contributing to a Project
+ In many instances, you’ll have two or three developers with a few commits a day, or possibly less for somewhat 
+ dormant projects. For larger companies or projects, the number of developers could be in the thousands, with
+ hundreds or thousands of commits coming in each day. This is important because with more and more developers,
+ you run into more issues with making sure your code applies cleanly or can be easily merged. Changes you submit
+ may be rendered obsolete or severely broken by work that is merged in while you were working or while your 
+ changes were waiting to be approved or applied.
+ 
+  The workflow required in order to contribute to a project is much different if you have write access to the 
+  project than if you don’t.
+  
+This section has covered a number of common workflows for dealing with several very different types of Git 
+projects you’re likely to encounter, and introduced a couple of new tools to help you manage this process.
+Next, you’ll see how to work the other side of the coin: maintaining a Git project. You’ll learn how to be a 
+benevolent dictator or integration manager.
+
+Maintaining a Project
+In addition to knowing how to effectively contribute to a project, you’ll likely need to know how to maintain 
+one. This can consist of accepting and applying patches generated via format-patch and e-mailed to you, or 
+integrating changes in remote branches for repositories you’ve added as remotes to your project.
+
+Summary
+You should feel fairly comfortable contributing to a project in Git as well as maintaining your own project 
+or integrating other users’ contributions. Congratulations on being an effective Git developer! In the next
+chapter, you’ll learn about how to use the largest and most popular Git hosting service, GitHub.
